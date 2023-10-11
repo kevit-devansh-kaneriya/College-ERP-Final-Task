@@ -1,0 +1,1683 @@
+{
+	"info": {
+		"_postman_id": "489225ec-d3f6-4be4-b714-cd262d808c9d",
+		"name": "Express Typescript",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27805581"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"token\",pm.response.json().token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\":\"Shekhar\",\n    \"lastName\":\"Tayde\",\n    \"emailId\":\"shekhar.tayde@kevit.io\",\n    \"password\":\"qwer1234\",\n    \"role\":\"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/signup",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"signup"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Admin created successfully",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\":\"Shekhar\",\n    \"lastName\":\"Tayde\",\n    \"emailId\":\"shekhar.tayde@kevit.io\",\n    \"password\":\"qwer1234\",\n    \"role\":\"admin\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users/signup",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"signup"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OTQwNTRkOWFhNzg1NzljMTY0ZTc4MiIsImlhdCI6MTY4NzQyMjI4NSwiZXhwIjoxNjg4MDI3MDg1fQ.HWdThe0eEWedoH6bTkys9EgYZap6DM-yZG5KnlArDGs\"\n}"
+						},
+						{
+							"name": "If incomplete Info provided",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\":\"Shekhar\",\n    \"lastName\":\"Tayde\",\n\n    \"password\":\"qwer1234\",\n    \"role\":\"admin\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users/signup",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"signup"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 400,\n    \"errorType\": \"BAD_REQUEST\",\n    \"errorCode\": \"Please provide all the information\",\n    \"originalError\": null,\n    \"meta\": null\n}"
+						},
+						{
+							"name": "If tried to create for role other than Admin",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\":\"Shekhar\",\n    \"lastName\":\"Tayde\",\n    \"emailId\":\"shekhar.tayde@kevit.io\",\n    \"password\":\"qwer1234\",\n    \"role\":\"admin\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users/signup",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"signup"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 400,\n    \"errorType\": \"BAD_REQUEST\",\n    \"errorCode\": \"Only for Admin role\",\n    \"originalError\": null,\n    \"meta\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Login User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"token\",pm.response.json().token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"emailId\":\"shekhar.tayde@kevit.io\",\n    \"password\":\"qwer1234\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login User Successful",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"emailId\":\"shekhar.tayde@kevit.io\",\n    \"password\":\"qwer1234\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OTJjMDk1OTE1Yjg0M2NmMjgyOTc3OSIsImlhdCI6MTY4NzQxNzcyMywiZXhwIjoxNjg4MDIyNTIzfQ.PbbUmR7lzDJ0I6X1JjrhqWDKDH5D1ODPsfbGsdJ9iVY\"\n}"
+						},
+						{
+							"name": "User not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"emailId\":\"shekhar@kevit.io\",\n    \"password\":\"qwer1234\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 400,\n    \"errorType\": \"BAD_REQUEST\",\n    \"errorCode\": \"User not found for emailId id\",\n    \"originalError\": null,\n    \"meta\": null\n}"
+						},
+						{
+							"name": "Invalid password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"emailId\":\"shekhar.tayde@kevit.io\",\n    \"password\":\"qwer123454\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 400,\n    \"errorType\": \"BAD_REQUEST\",\n    \"errorCode\": \"Invalid Credentials\",\n    \"originalError\": null,\n    \"meta\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Create staff account",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\":\"Devansh\",\n    \"lastName\":\"Kaneriya\",\n    \"emailId\":\"devansh.kaneriya@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/staff",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"staff"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "staff account created successfully",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\":\"Priyanka\",\n    \"lastName\":\"Kusekar\",\n    \"emailId\":\"kevit.shekhar.tayde@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users/staff",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"staff"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"firstName\": \"Priyanka\",\n        \"lastName\": \"Kusekar\",\n        \"emailId\": \"kevit.shekhar.tayde@gmail.com\",\n        \"role\": \"staff\",\n        \"_id\": \"6494170b30a39b42e419de4d\",\n        \"__v\": 0\n    }\n}"
+						},
+						{
+							"name": "Email already registered",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\":\"Priyanka\",\n    \"lastName\":\"Kusekar\",\n    \"emailId\":\"kevit.shekhar.tayde@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users/staff",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"staff"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 500,\n    \"errorType\": \"DATABASE_ERROR\",\n    \"errorCode\": \"User already exist\",\n    \"originalError\": {\n        \"index\": 0,\n        \"code\": 11000,\n        \"keyPattern\": {\n            \"emailId\": 1\n        },\n        \"keyValue\": {\n            \"emailId\": \"kevit.shekhar.tayde@gmail.com\"\n        }\n    },\n    \"meta\": null,\n    \"level\": \"warn\"\n}"
+						},
+						{
+							"name": "Missing information",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\":\"Priyanka\",\n    \"lastName\":\"Kusekar\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users/staff",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"staff"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 400,\n    \"errorType\": \"BAD_REQUEST\",\n    \"errorCode\": \"Please provide all information.\",\n    \"originalError\": null,\n    \"meta\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Get all users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all users success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/users/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"_id\": \"6494148775b00a22ba36ca54\",\n            \"firstName\": \"Shekhar\",\n            \"lastName\": \"Tayde\",\n            \"emailId\": \"shekhar.tayde@kevit.io\",\n            \"role\": \"admin\",\n            \"__v\": 2\n        },\n        {\n            \"_id\": \"6494170b30a39b42e419de4d\",\n            \"firstName\": \"Priyanka\",\n            \"lastName\": \"Kusekar\",\n            \"emailId\": \"kevit.shekhar.tayde@gmail.com\",\n            \"role\": \"staff\",\n            \"__v\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "If no users available",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/users/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"data\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "Get logged in user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/me",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get user success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/users/me",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"me"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"_id\": \"6494148775b00a22ba36ca54\",\n        \"firstName\": \"Shekhar\",\n        \"lastName\": \"Tayde\",\n        \"emailId\": \"shekhar.tayde@kevit.io\",\n        \"role\": \"admin\",\n        \"__v\": 2\n    }\n}"
+						},
+						{
+							"name": "If no user logged in.",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/users/me",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"me"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 401,\n    \"errorType\": \"UNAUTHORIZED\",\n    \"errorCode\": \"Login to access resourse\",\n    \"originalError\": null,\n    \"meta\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Update user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\":\"Shekhu\",\n    \"lastName\":\"Tayade\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/update",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"token\",pm.response.json().token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Logout Succesfful",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/users/logout",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"logout"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"_id\": \"6494148775b00a22ba36ca54\",\n        \"firstName\": \"Shekhar\",\n        \"lastName\": \"Tayde\",\n        \"emailId\": \"shekhar.tayde@kevit.io\",\n        \"role\": \"admin\",\n        \"__v\": 15\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Logout User from all devices",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\":\"Shekhu\",\n    \"lastName\":\"Tayade\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/logoutAll",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"logoutAll"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Logout User from all devices",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\":\"Shekhu\",\n    \"lastName\":\"Tayade\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users/logoutAll",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"logoutAll"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"_id\": \"6494148775b00a22ba36ca54\",\n        \"firstName\": \"Shekhar\",\n        \"lastName\": \"Tayde\",\n        \"emailId\": \"shekhar.tayde@kevit.io\",\n        \"role\": \"admin\",\n        \"__v\": 15\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Batch",
+			"item": [
+				{
+					"name": "Create new batch",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"year\":2021,\n    \"branches\":[\n        {\n            \"name\":\"CE\",\n            \"totalStudentsIntake\":15\n        },\n        {\n            \"name\":\"ME\",\n            \"totalStudentsIntake\":15\n        },\n        {\n            \"name\":\"ENTC\",\n            \"totalStudentsIntake\":10\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/batches/newbatch",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"batches",
+								"newbatch"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"year\":2021,\n    \"branches\":[\n        {\n            \"name\":\"CE\",\n            \"totalStudentsIntake\":15\n        },\n        {\n            \"name\":\"ME\",\n            \"totalStudentsIntake\":15\n        },\n        {\n            \"name\":\"ENTC\",\n            \"totalStudentsIntake\":10\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/batches/newbatch",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"batches",
+										"newbatch"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"year\": 2021,\n        \"totalSeats\": 40,\n        \"branches\": [\n            {\n                \"name\": \"CE\",\n                \"totalStudentsIntake\": 15,\n                \"totalStudents\": 0,\n                \"_id\": \"6494249d29cdf8b237d932da\",\n                \"availableIntake\": 15\n            },\n            {\n                \"name\": \"ME\",\n                \"totalStudentsIntake\": 15,\n                \"totalStudents\": 0,\n                \"_id\": \"6494249d29cdf8b237d932db\",\n                \"availableIntake\": 15\n            },\n            {\n                \"name\": \"ENTC\",\n                \"totalStudentsIntake\": 10,\n                \"totalStudents\": 0,\n                \"_id\": \"6494249d29cdf8b237d932dc\",\n                \"availableIntake\": 10\n            }\n        ],\n        \"_id\": \"6494249d29cdf8b237d932d9\",\n        \"__v\": 0\n    }\n}"
+						},
+						{
+							"name": "If batch year is same",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"year\":2021,\n    \"branches\":[\n        {\n            \"name\":\"CE\",\n            \"totalStudentsIntake\":15\n        },\n        {\n            \"name\":\"ME\",\n            \"totalStudentsIntake\":15\n        },\n        {\n            \"name\":\"ENTC\",\n            \"totalStudentsIntake\":10\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/batches/newbatch",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"batches",
+										"newbatch"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 500,\n    \"errorType\": \"DATABASE_ERROR\",\n    \"errorCode\": \"Batch already exist\",\n    \"originalError\": {\n        \"index\": 0,\n        \"code\": 11000,\n        \"keyPattern\": {\n            \"year\": 1\n        },\n        \"keyValue\": {\n            \"year\": 2021\n        }\n    },\n    \"meta\": null,\n    \"level\": \"warn\"\n}"
+						},
+						{
+							"name": "if Invalid/Incomplete data",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"year\":2021,\n    \"branches\":[\n        {\n            \"name\":\"CE\"\n        },\n        {\n            \"name\":\"ME\",\n            \"totalStudentsIntake\":15\n        },\n        {\n            \"name\":\"ENTC\",\n            \"totalStudentsIntake\":10\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/batches/newbatch",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"batches",
+										"newbatch"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 500,\n    \"errorType\": \"DATABASE_ERROR\",\n    \"errorCode\": \"Batch already exist or Invalid data.\",\n    \"originalError\": {\n        \"errors\": {\n            \"branches.0.availableIntake\": {\n                \"name\": \"ValidatorError\",\n                \"message\": \"Path `availableIntake` is required.\",\n                \"properties\": {\n                    \"message\": \"Path `availableIntake` is required.\",\n                    \"type\": \"required\",\n                    \"path\": \"availableIntake\"\n                },\n                \"kind\": \"required\",\n                \"path\": \"availableIntake\"\n            },\n            \"branches.0.totalStudentsIntake\": {\n                \"name\": \"ValidatorError\",\n                \"message\": \"Path `totalStudentsIntake` is required.\",\n                \"properties\": {\n                    \"message\": \"Path `totalStudentsIntake` is required.\",\n                    \"type\": \"required\",\n                    \"path\": \"totalStudentsIntake\"\n                },\n                \"kind\": \"required\",\n                \"path\": \"totalStudentsIntake\"\n            }\n        },\n        \"_message\": \"Batch validation failed\",\n        \"name\": \"ValidationError\",\n        \"message\": \"Batch validation failed: branches.0.availableIntake: Path `availableIntake` is required., branches.0.totalStudentsIntake: Path `totalStudentsIntake` is required.\"\n    },\n    \"meta\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Get all batches",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/batches/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"batches",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/batches/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"batches",
+										""
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"totalStudents\": 2,\n            \"branches\": [\n                {\n                    \"CE\": 1,\n                    \"ME\": 1,\n                    \"ENTC\": 0\n                }\n            ],\n            \"year\": 2022\n        },\n        {\n            \"totalStudents\": 2,\n            \"branches\": [\n                {\n                    \"CE\": 1,\n                    \"ME\": 0,\n                    \"ENTC\": 1\n                }\n            ],\n            \"year\": 2021\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get batch vacant seats details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/batches/2021",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"batches",
+								"2021"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/batches/2021",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"batches",
+										"2021"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"_id\": \"6494249d29cdf8b237d932d9\",\n        \"year\": 2021,\n        \"totalSeats\": 40,\n        \"branches\": [\n            {\n                \"name\": \"CE\",\n                \"totalStudentsIntake\": 15,\n                \"totalStudents\": 1,\n                \"_id\": \"6494249d29cdf8b237d932da\",\n                \"availableIntake\": 14\n            },\n            {\n                \"name\": \"ME\",\n                \"totalStudentsIntake\": 15,\n                \"totalStudents\": 0,\n                \"_id\": \"6494249d29cdf8b237d932db\",\n                \"availableIntake\": 15\n            },\n            {\n                \"name\": \"ENTC\",\n                \"totalStudentsIntake\": 10,\n                \"totalStudents\": 1,\n                \"_id\": \"6494249d29cdf8b237d932dc\",\n                \"availableIntake\": 9\n            }\n        ],\n        \"__v\": 0,\n        \"totalStudents\": 2,\n        \"availableIntake\": 38\n    }\n}"
+						},
+						{
+							"name": "If no batch available",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/batches/2023",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"batches",
+										"2023"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"errorType\": \"NOT_FOUND\",\n    \"errorCode\": \"BATCH NOT FOUND\",\n    \"originalError\": null,\n    \"meta\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Student",
+			"item": [
+				{
+					"name": "Add new Student",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\":\"Rahul\",\n    \"lastName\":\"Singh\",\n    \"emailId\":\"rahulsingh@gmail.com\",\n    \"address\":\"Pune Maharashtra\",\n    \"contactNo\":9960643926,\n    \"batch\":2021,\n    \"branch\":\"ENTC\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/students/addStudent",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"students",
+								"addStudent"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\":\"Rahul\",\n    \"lastName\":\"Singh\",\n    \"emailId\":\"rahulsingh@gmail.com\",\n    \"address\":\"Pune Maharashtra\",\n    \"contactNo\":9960643926,\n    \"batch\":2018,\n    \"branch\":\"ENTC\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/students/addStudent",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"students",
+										"addStudent"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"firstName\": \"Rahul\",\n        \"lastName\": \"Singh\",\n        \"emailId\": \"rahulsingh@gmail.com\",\n        \"address\": \"Pune Maharashtra\",\n        \"contactNo\": 9960643926,\n        \"batch\": 2021,\n        \"branch\": \"ENTC\",\n        \"currentSemester\": \"first\",\n        \"attended\": [],\n        \"notAttended\": [],\n        \"attendence\": 0,\n        \"_id\": \"649427a76d09669510c215b9\",\n        \"__v\": 0\n    }\n}"
+						},
+						{
+							"name": "Incomplete data to add student",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\":\"Rahul\",\n    \"lastName\":\"Singh\",\n    \"emailId\":\"rahulsingh@gmail.com\",\n    \"address\":\"Pune Maharashtra\",\n    \"contactNo\":9960643926,\n\n    \"branch\":\"ENTC\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/students/addStudent",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"students",
+										"addStudent"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 400,\n    \"errorType\": \"BAD_REQUEST\",\n    \"errorCode\": \"Please provide all required credentials\",\n    \"originalError\": null,\n    \"meta\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Update student batch or branch",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"batch\":2020,\n    \"branch\":\"ME\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/students/updatebatch/6492c5176e2c0d09283137bc",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"students",
+								"updatebatch",
+								"6492c5176e2c0d09283137bc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update student info",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\":\"Priyanka\",\n    \"lastName\":\"Kusekar\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/students/updateinfo/64904ec0068be74a44ee12fc",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"students",
+								"updateinfo",
+								"64904ec0068be74a44ee12fc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read student",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"batch\":2020,\n    \"branch\":\"CE\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/students/651fe21600b9933631ca004f",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"students",
+								"651fe21600b9933631ca004f"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/students/649427f56d09669510c215c3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"students",
+										"649427f56d09669510c215c3"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"_id\": \"649427f56d09669510c215c3\",\n        \"firstName\": \"Rm\",\n        \"lastName\": \"Singh\",\n        \"emailId\": \"rmsingh@gmail.com\",\n        \"address\": \"Pune Maharashtra\",\n        \"contactNo\": 9960643926,\n        \"batch\": 2022,\n        \"branch\": \"CE\",\n        \"currentSemester\": \"first\",\n        \"attended\": [],\n        \"notAttended\": [],\n        \"attendence\": 0,\n        \"__v\": 0\n    }\n}"
+						},
+						{
+							"name": "No student found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/students/64904ec0068be74a44ee12fc",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"students",
+										"64904ec0068be74a44ee12fc"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"errorType\": \"NOT_FOUND\",\n    \"errorCode\": \"No student found\",\n    \"originalError\": null,\n    \"meta\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Student",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/students/64916341333e3b4f918730fc",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"students",
+								"64916341333e3b4f918730fc"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "No student found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/students/64916341333e3b4f918730fc",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"students",
+										"64916341333e3b4f918730fc"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"errorType\": \"NOT_FOUND\",\n    \"errorCode\": \"No student found\",\n    \"originalError\": null,\n    \"meta\": null\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/students/64916341333e3b4f918730fc",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"students",
+										"64916341333e3b4f918730fc"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"_id\": \"649428416d09669510c215cc\",\n        \"firstName\": \"Rp\",\n        \"lastName\": \"Singh\",\n        \"emailId\": \"rpsingh@gmail.com\",\n        \"address\": \"Pune Maharashtra\",\n        \"contactNo\": 9960643926,\n        \"batch\": 2022,\n        \"branch\": \"ME\",\n        \"currentSemester\": \"first\",\n        \"attended\": [],\n        \"notAttended\": [],\n        \"attendence\": 0,\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Add student attendence",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"presentAttendance\":[\"2023-06-20\",\"2023-06-23\"],\n    \"absentAttendance\":[\"2023-06-21\",\"2023-06-22\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/students/attendence/649427f56d09669510c215c3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"students",
+								"attendence",
+								"649427f56d09669510c215c3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "If tried to add weekend",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"presentAttendance\":[],\n    \"absentAttendance\":[\"2023-06-20\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/students/attendence/64918e450730ca305e6b670f",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"students",
+										"attendence",
+										"64918e450730ca305e6b670f"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"_id\": \"649427f56d09669510c215c3\",\n        \"firstName\": \"Rm\",\n        \"lastName\": \"Singh\",\n        \"emailId\": \"rmsingh@gmail.com\",\n        \"address\": \"Pune Maharashtra\",\n        \"contactNo\": 9960643926,\n        \"batch\": 2022,\n        \"branch\": \"CE\",\n        \"currentSemester\": \"first\",\n        \"attended\": [],\n        \"notAttended\": [],\n        \"attendence\": 0,\n        \"__v\": 0\n    }\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"presentAttendance\":[],\n    \"absentAttendance\":[\"2023-06-20\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/students/attendence/64918e450730ca305e6b670f",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"students",
+										"attendence",
+										"64918e450730ca305e6b670f"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"_id\": \"649427f56d09669510c215c3\",\n        \"firstName\": \"Rm\",\n        \"lastName\": \"Singh\",\n        \"emailId\": \"rmsingh@gmail.com\",\n        \"address\": \"Pune Maharashtra\",\n        \"contactNo\": 9960643926,\n        \"batch\": 2022,\n        \"branch\": \"CE\",\n        \"currentSemester\": \"first\",\n        \"attended\": [\n            \"2023-06-20T00:00:00.000Z\",\n            \"2023-06-23T00:00:00.000Z\"\n        ],\n        \"notAttended\": [\n            \"2023-06-21T00:00:00.000Z\",\n            \"2023-06-22T00:00:00.000Z\"\n        ],\n        \"attendence\": 50,\n        \"__v\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Find all absent students",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/students/allabsentstudents/2023-06-21",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"students",
+								"allabsentstudents",
+								"2023-06-21"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/students/allabsentstudents/2023-06-20",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"students",
+										"allabsentstudents",
+										"2023-06-20"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"_id\": \"649427f56d09669510c215c3\",\n            \"firstName\": \"Rm\",\n            \"lastName\": \"Singh\",\n            \"emailId\": \"rmsingh@gmail.com\",\n            \"address\": \"Pune Maharashtra\",\n            \"contactNo\": 9960643926,\n            \"batch\": 2022,\n            \"branch\": \"CE\",\n            \"currentSemester\": \"first\",\n            \"attended\": [\n                \"2023-06-20T00:00:00.000Z\",\n                \"2023-06-23T00:00:00.000Z\"\n            ],\n            \"notAttended\": [\n                \"2023-06-21T00:00:00.000Z\",\n                \"2023-06-22T00:00:00.000Z\"\n            ],\n            \"attendence\": 50,\n            \"__v\": 1\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "find branch absentees",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/students/branchabsentees/find?batch=2021&branch=CE&currentSemester=first&date=2023-06-21",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"students",
+								"branchabsentees",
+								"find"
+							],
+							"query": [
+								{
+									"key": "batch",
+									"value": "2021"
+								},
+								{
+									"key": "branch",
+									"value": "CE"
+								},
+								{
+									"key": "currentSemester",
+									"value": "first"
+								},
+								{
+									"key": "date",
+									"value": "2023-06-21"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/students/branchabsentees/find?batch=2022&branch=CE&currentSemester=first&date=2023-06-21",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"students",
+										"branchabsentees",
+										"find"
+									],
+									"query": [
+										{
+											"key": "batch",
+											"value": "2022"
+										},
+										{
+											"key": "branch",
+											"value": "CE"
+										},
+										{
+											"key": "currentSemester",
+											"value": "first"
+										},
+										{
+											"key": "date",
+											"value": "2023-06-21"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"_id\": \"649427f56d09669510c215c3\",\n            \"firstName\": \"Rm\",\n            \"lastName\": \"Singh\",\n            \"emailId\": \"rmsingh@gmail.com\",\n            \"address\": \"Pune Maharashtra\",\n            \"contactNo\": 9960643926,\n            \"batch\": 2022,\n            \"branch\": \"CE\",\n            \"currentSemester\": \"first\",\n            \"attended\": [\n                \"2023-06-20T00:00:00.000Z\",\n                \"2023-06-23T00:00:00.000Z\"\n            ],\n            \"notAttended\": [\n                \"2023-06-21T00:00:00.000Z\",\n                \"2023-06-22T00:00:00.000Z\"\n            ],\n            \"attendence\": 50,\n            \"__v\": 1\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "find student with low attendence",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/students/lessattendence/find?batch=2021&branch=CE&currentSemester=first&value=75",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"students",
+								"lessattendence",
+								"find"
+							],
+							"query": [
+								{
+									"key": "batch",
+									"value": "2021"
+								},
+								{
+									"key": "branch",
+									"value": "CE"
+								},
+								{
+									"key": "currentSemester",
+									"value": "first"
+								},
+								{
+									"key": "value",
+									"value": "75"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/students/lessattendence/find?batch=2022&branch=CE&currentSemester=first&value=75",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"students",
+										"lessattendence",
+										"find"
+									],
+									"query": [
+										{
+											"key": "batch",
+											"value": "2022"
+										},
+										{
+											"key": "branch",
+											"value": "CE"
+										},
+										{
+											"key": "currentSemester",
+											"value": "first"
+										},
+										{
+											"key": "value",
+											"value": "75"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"_id\": \"649427f56d09669510c215c3\",\n            \"firstName\": \"Rm\",\n            \"lastName\": \"Singh\",\n            \"emailId\": \"rmsingh@gmail.com\",\n            \"address\": \"Pune Maharashtra\",\n            \"contactNo\": 9960643926,\n            \"batch\": 2022,\n            \"branch\": \"CE\",\n            \"currentSemester\": \"first\",\n            \"attended\": [\n                \"2023-06-20T00:00:00.000Z\",\n                \"2023-06-23T00:00:00.000Z\"\n            ],\n            \"notAttended\": [\n                \"2023-06-21T00:00:00.000Z\",\n                \"2023-06-22T00:00:00.000Z\"\n            ],\n            \"attendence\": 50,\n            \"__v\": 1\n        }\n    ]\n}"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}
