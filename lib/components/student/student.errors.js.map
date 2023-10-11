@@ -1,1 +1,0 @@
-{"version":3,"file":"student.errors.js","sourceRoot":"","sources":["../../../src/components/student/student.errors.ts"],"names":[],"mappings":";;AAAA,MAAM,mBAAmB,GAAG;IAC3B,eAAe,EAAE,qBAAqB;IACtC,eAAe,EAAE,yCAAyC;IAC1D,2BAA2B,EAAE,6BAA6B;IAC1D,aAAa,EAAE,sBAAsB;IACrC,kBAAkB,EAAE,oCAAoC;IACxD,gBAAgB,EAAE,kBAAkB;IACpC,eAAe,EAAE,iBAAiB;CAClC,CAAC;AAEF,kBAAe,mBAAmB,CAAC"}

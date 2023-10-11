@@ -10,7 +10,7 @@
     "lint-fix": "eslint --fix src/**/*.ts",
     "precommit": "npm run lint-fix && npm run format",
     "prepush": "npm run lint",
-    "start": "npm run build && node ./lib/app.js",
+    "start": "npm run build && node ./dist/app.js",
     "start:dev": "nodemon -e ts --exec \"npm run start\"",
     "prepare": "husky install"
   },
