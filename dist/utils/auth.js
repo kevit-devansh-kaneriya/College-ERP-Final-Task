@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs");
 const path_1 = require("path");
 const jwt = require("jsonwebtoken");
+const user_DAL_1 = require("../components/user/user.DAL");
 exports.default = async (req, res, next) => {
     let token;
     if (req.headers.authorization &&
@@ -15,6 +16,11 @@ exports.default = async (req, res, next) => {
     const privateKey = fs.readFileSync((0, path_1.join)(__dirname, '../../keys/Private.key'));
     try {
         const decoded = jwt.verify(token, privateKey);
+        const user = await (0, user_DAL_1.findOneUser)(decoded.id, token);
+        if (!user) {
+            return next(res.status(401).send('UNAUTHENTICATED'));
+        }
+        req.user = user;
         req.token = token;
         next();
     }
