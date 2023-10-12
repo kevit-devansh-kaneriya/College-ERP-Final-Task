@@ -14,9 +14,6 @@ class UsersRoute {
         this.router.post('/login', user_controller_1.loginUser);
         this.router.post('/staff', auth_1.default, authRoles('admin'), user_controller_1.createStaff);
         this.router.get('/', auth_1.default, user_controller_1.getUsers);
-        this.router.patch('/update', auth_1.default, user_controller_1.updateUser);
-        this.router.get('/me', auth_1.default, user_controller_1.getMyProfile);
-        this.router.get('/:id', auth_1.default, user_controller_1.getUserProfileById);
         this.router.delete('/delete', auth_1.default, user_controller_1.deleteUser);
         this.router.put('/logout', auth_1.default, user_controller_1.logoutUser);
         this.router.put('/logoutAll', auth_1.default, user_controller_1.logoutUserFromAll);

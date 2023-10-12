@@ -3,6 +3,9 @@ import authorization from '../../utils/auth';
 import { 
 	createAdmin ,
 	loginUser ,
+	createStaff ,
+	getUsers ,
+	deleteUser ,
 	logoutUser ,
 	logoutUserFromAll
 } from './user.controller';
@@ -23,6 +26,15 @@ class UsersRoute {
 
 		// Login User
 		this.router.post('/login', loginUser);
+
+		// Create a new staff account
+		this.router.post('/staff',authorization,authRoles('admin'),createStaff,);
+
+		// List Users
+		this.router.get('/', authorization, getUsers);
+
+		// Delete User
+		this.router.delete('/delete',authorization,deleteUser);
 
 		// Logout User
 		this.router.put('/logout',authorization,logoutUser);

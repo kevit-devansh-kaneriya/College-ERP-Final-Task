@@ -1,15 +1,23 @@
 import bcrypt = require('bcrypt');
 import {
 	createNewUser,
+	findUsers,
+	findUserById,
 	findUserByEmail,
 } from './user.DAL';
 import { sendToken } from './user.helper';
+const randomString = require('randomstring');
 
 
 export async function createAdmin(req, res, next) {
 	try {
 		const adminObject = req.body;
-		if (!adminObject.firstName || !adminObject.lastName || !adminObject.emailId ||!adminObject.password) {
+		if (
+			!adminObject.firstName ||
+			!adminObject.lastName ||
+			!adminObject.emailId ||
+			!adminObject.password
+		) {
 			return next(res.status(400).send('Please provide all the information'));
 		}
 
@@ -18,7 +26,7 @@ export async function createAdmin(req, res, next) {
 		}
 
 		const user = await createNewUser(adminObject);
-
+		
 		await sendToken(user, 200, res);
 	} catch (err) {
 		return next(err);
@@ -40,8 +48,53 @@ export async function loginUser(req, res, next) {
 		if (!isMatched) {
 			return next(res.status(400).send('Invalid Credentials'));
 		}
-
+		
 		sendToken(user, 200, res);
+	} catch (err) {
+		return next(err);
+	}
+}
+
+
+export async function createStaff(req, res, next) {
+	const staffObject = req.body;
+	if (
+		!staffObject.firstName ||
+		!staffObject.lastName ||
+		!staffObject.emailId
+	) {
+		return next(res.status(400).send('Please provide all information.'));
+	}
+	staffObject.password = randomString.generate(7);
+	try {
+		const staff = await createNewUser(staffObject);			
+		return res.status(200).send({ data: staff });
+	} catch (err) {
+		return next(err);
+	}
+}
+
+
+export async function getUsers(req, res, next) {
+	try {
+		const users = await findUsers();
+		return res.status(200).send({ data: users });
+	} catch (err) {
+		return next(err);
+	}
+}
+
+
+export async function deleteUser(req, res, next) {
+	try {
+		const id = req.body.id;
+		const user = await findUserById(id);
+		if (!user) {
+			return next(res.status(404).send('USER_NOT_FOUND'));
+		}
+		await user.delete();
+
+		return res.status(200).send({ data: user });
 	} catch (err) {
 		return next(err);
 	}
@@ -58,7 +111,7 @@ export async function logoutUser(req, res, next) {
 			httpOnly: true,
 		});
 		await req.user.save();
-
+		
 		return res.status(200).send({ data: req.user });
 	} catch (err) {
 		return next(err);
@@ -67,13 +120,13 @@ export async function logoutUser(req, res, next) {
 
 
 export async function logoutUserFromAll(req, res, next) {
-	try {
-		req.user.tokens = [];
-		await req.user.save();
-		return res.status(200).send({ data: req.user });
-	} catch (err) {
-		const statusCode = 500;
-		const errorMessage = 'Failed to logout user from all devices';
-		return next({ statusCode, message: errorMessage, originalError: err });
-	}
+    try {
+        req.user.tokens = [];
+        await req.user.save();
+        return res.status(200).send({ data: req.user });
+    } catch (err) {
+        const statusCode = 500;
+        const errorMessage = 'Failed to logout user from all devices';
+        return next({ statusCode, message: errorMessage, originalError: err });
+    }
 }

@@ -34,6 +34,7 @@ export default async (req, res, next) => {
 			return next(res.status(401).send('UNAUTHENTICATED'));
 		}
 		req.user = user;
+		// console.log(req.user);
 		req.token = token;
 		next();
 	} catch (error) {
