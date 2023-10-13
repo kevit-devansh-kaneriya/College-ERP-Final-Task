@@ -8,7 +8,6 @@ import * as mongoose from 'mongoose';
 import * as cookieParser from 'cookie-parser';
 
 dotenv.config();
-// Controllers (route handlers)
 import ApplicationConfig from './application.routes';
 import Config from './config';
 
@@ -28,7 +27,6 @@ class App {
 	}
 
 	private config(): void {
-		// this.app.use(morganInstance);
 		this.app.use(cookieParser());
 		this.app.use(
 			cors({

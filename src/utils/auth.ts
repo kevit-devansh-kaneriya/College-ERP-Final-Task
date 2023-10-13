@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import { join } from 'path';
 import jwt = require('jsonwebtoken');
-// import { findOneUser } from '../components/user/user.DAL';
+import { findOneUser } from '../components/user/user.DAL';
 
 /**
  * Middleware to verify token and User from DB
@@ -29,11 +29,12 @@ export default async (req, res, next) => {
 
 	try {
 		const decoded = jwt.verify(token, privateKey);
-		// const user = await findOneUser(decoded.id, token);
-		// if (!user) {
-		// 	return next(res.status(401).send('UNAUTHENTICATED'));
-		// }
-		// req.user = user;
+		const user = await findOneUser(decoded.id, token);
+		if (!user) {
+			return next(res.status(401).send('UNAUTHENTICATED'));
+		}
+		req.user = user;
+		// console.log(req.user);
 		req.token = token;
 		next();
 	} catch (error) {
