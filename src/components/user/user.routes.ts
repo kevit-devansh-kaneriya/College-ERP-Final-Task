@@ -1,20 +1,10 @@
 import { Router } from 'express';
 import authorization from '../../utils/auth';
-import { 
-	createAdmin ,
-	loginUser ,
-	createStaff ,
-	getUsers ,
-	deleteUser ,
-	logoutUser ,
-	logoutUserFromAll
-} from './user.controller';
-
+import { createAdmin,loginUser,createStaff,getUsers,updateUser,getMyProfile,getUserProfileById,deleteUser,logoutUser,logoutUserFromAll} from './user.controller';
 const authRoles = require('../../utils/authRole');
 
 class UsersRoute {
 	public router: Router;
-
 	constructor() {
 		this.router = Router();
 		this.initializeRoutes();
@@ -32,6 +22,15 @@ class UsersRoute {
 
 		// List Users
 		this.router.get('/', authorization, getUsers);
+
+		// Update User
+		this.router.patch('/update',authorization,updateUser);
+
+		// Get a User
+		this.router.get('/me', authorization, getMyProfile);
+
+		// Get User by Id
+		this.router.get('/:id',authorization,getUserProfileById);
 
 		// Delete User
 		this.router.delete('/delete',authorization,deleteUser);

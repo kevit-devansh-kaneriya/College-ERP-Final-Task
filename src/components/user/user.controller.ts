@@ -8,7 +8,6 @@ import {
 import { sendToken } from './user.helper';
 const randomString = require('randomstring');
 
-
 export async function createAdmin(req, res, next) {
 	try {
 		const adminObject = req.body;
@@ -84,10 +83,50 @@ export async function getUsers(req, res, next) {
 	}
 }
 
+export async function getMyProfile(req, res, next) {
+	try {
+		const user = await findUserById(req.user.id);
+		return res.status(200).send({ data: user });
+	} catch (err) {
+		return next(err);
+	}
+}
+
+
+export async function getUserProfileById(req, res, next) {
+	try {
+		const user = await findUserById(req.params.id);
+		return res.status(200).send({ data: user });
+	} catch (err) {
+		return next(err);
+	}
+}
+
+export async function updateUser(req, res, next) {
+	const updates = Object.keys(req.body);
+	console.log(updates);
+	const allowedUpdates = ['firstName', 'lastName', 'email', 'password'];
+	const isValidUpdation = updates.every((update) =>
+		allowedUpdates.includes(update),
+	);
+
+	if (!isValidUpdation) {
+		return next(res.status(400).send('Invalid updates'));
+	}
+	try {
+		updates.forEach((update) => {
+			req.user[update] = req.body[update];
+		});
+		await req.user.save();
+		return res.status(200).send({ data: req.user });
+	} catch (err) {
+		return next(err);
+	}
+}
 
 export async function deleteUser(req, res, next) {
 	try {
-		const id = req.body.id;
+		const id = req.user.id;
 		const user = await findUserById(id);
 		if (!user) {
 			return next(res.status(404).send('USER_NOT_FOUND'));
