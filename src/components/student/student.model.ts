@@ -33,7 +33,7 @@ const studentSchema = new Schema({
 	branch: {
 		type: Schema.Types.String,
 		enum: {
-			values: ['CE', 'IT', 'ME', 'ENTC'],
+			values: ['CE', 'ICT', 'ME'],
 			message: 'Please select correct branch',
 		},
 	},
